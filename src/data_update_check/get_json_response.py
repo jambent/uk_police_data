@@ -5,7 +5,7 @@ def get_json_response(url):
     """
     Returns response status code, and response body in JSON format
     """
-    if type(url) is not str:
+    if not isinstance(url, str):
         raise TypeError("Input URL must be a string")
 
     try:
