@@ -13,7 +13,7 @@ def lambda_handler(event, context):
     response_status, response_body = get_json_response(URL)
     last_pipeline_update_date = get_stored_last_updated_date()
     available_last_update_date = response_body['date']
-    if (response_status == 200 
-    and available_last_update_date != last_pipeline_update_date):
+    if (response_status == 200
+            and available_last_update_date != last_pipeline_update_date):
         update_response = update_last_updated_date(available_last_update_date)
         return {'statusCode': 200}, update_response

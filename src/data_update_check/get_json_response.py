@@ -14,4 +14,3 @@ def get_json_response(url):
         return response.status_code, json_body
     except BaseException:
         return response.status_code, "Exception: JSON decoding failed"
-
