@@ -6,7 +6,7 @@ import json
 LANDING_BUCKET = os.environ['S3_LANDING_ID']
 
 
-def get_last_updated_date():
+def get_stored_last_updated_date():
     """
     Returns last data update date stored in s3 bucket
     """
