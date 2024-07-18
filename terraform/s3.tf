@@ -16,6 +16,14 @@ resource "aws_s3_object" "last_updated_date" {
   bucket = aws_s3_bucket.landing_bucket.id
 }
 
+/* Loads initial state of force names information */
+resource "aws_s3_object" "force_names" {
+  key    = "force_names.json"
+  source = "${path.module}/../initialise_data_collection/initialised_force_names.json"
+  bucket = aws_s3_bucket.landing_bucket.id
+}
+
+
 /* Data update check lambda code */
 resource "aws_s3_object" "data_update_check_code" {
   key    = "data_update_check_function.zip"
