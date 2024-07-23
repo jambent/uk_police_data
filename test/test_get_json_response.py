@@ -1,6 +1,6 @@
 import pytest
 
-from data_update_check.get_json_response import get_json_response
+from src.data_update_check.get_json_response import get_json_response
 
 
 def test_that_status_200_and_json_returned_with_correct_url():

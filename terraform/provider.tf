@@ -4,7 +4,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "uk-police-data-backend"
+    bucket = "uk-police-data-backend-012985638193"
     key    = "application.tfstate"
     region = "eu-west-2"
   }
