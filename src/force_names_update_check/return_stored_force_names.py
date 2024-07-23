@@ -1,9 +1,6 @@
 import os
-from dotenv import load_dotenv 
 import boto3
 import json
-
-load_dotenv()
 
 
 LANDING_BUCKET = os.environ['S3_LANDING_ID']

@@ -30,3 +30,10 @@ resource "aws_s3_object" "data_update_check_code" {
   source = "${path.module}/../lambda_code_zip_files/data_update_check_function.zip"
   bucket = aws_s3_bucket.code_bucket.id
 }
+
+/* Force names update check lambda code */
+resource "aws_s3_object" "force_names_update_check_code" {
+  key    = "force_names_update_check_function.zip"
+  source = "${path.module}/../lambda_code_zip_files/force_names_update_check_function.zip"
+  bucket = aws_s3_bucket.code_bucket.id
+}
