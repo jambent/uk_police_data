@@ -1,7 +1,4 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
-
-name: Python application
+name: Check formatting, test and deploy
 
 on:
   push:
@@ -37,3 +34,33 @@ jobs:
     - name: Test with pytest
       run: |
         pytest -m ./test
+
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      
+      - name: Configure AWS CLI
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-2
+
+      - name: Setup terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Terraform init
+        run: >
+          terraform -chdir=./terraform init
+
+      - name: Terraform plan
+        run: >
+          terraform -chdir=./terraform plan
+
+      - name: Terraform apply
+        run: >
+          terraform -chdir=./terraform apply
+          -auto-approve

@@ -16,18 +16,23 @@ def lambda_handler(event, context):
     stored_force_names = return_stored_force_names()
     response_status, response_body = get_json_response(URL)
 
-    force_names_change_check_results = check_for_force_names_change(stored_force_names,response_body)
-    
+    force_names_change_check_results = check_for_force_names_change(
+        stored_force_names, response_body)
+
     if (response_status == 200
-            and force_names_change_check_results["number_of_force_names"] != "No change"):
+        and force_names_change_check_results["number_of_force_names"]
+            != "No change"):
         update_response = update_force_names(response_body)
         return update_response
+
     elif (response_status == 200
-            and force_names_change_check_results["number_of_force_names"] == "No change"):
+            and force_names_change_check_results["number_of_force_names"]
+            == "No change"):
         return {
             'statusCode': 200,
             'body': json.dumps(
                 "No change to force names list")}
+
     else:
         return {
             'statusCode': 400,

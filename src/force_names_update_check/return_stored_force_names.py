@@ -9,7 +9,7 @@ LANDING_BUCKET = os.environ['S3_LANDING_ID']
 def return_stored_force_names():
     """
     Returns force names currently stored in S3 bucket
-    
+
     Returns:
         Dictionary of stored force names data
     """
@@ -27,4 +27,3 @@ def return_stored_force_names():
 if __name__ == "__main__":
     stored_force_names_dict = return_stored_force_names()
     print(stored_force_names_dict)
-
